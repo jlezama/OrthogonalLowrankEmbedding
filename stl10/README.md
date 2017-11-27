@@ -1,10 +1,10 @@
 # Orthogonal Lowrank Embedding (OLÉ) on STL-10 with Pytorch
 
-Implementaion of the article
-"OL\'E: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning"
-Jos\'e Lezama, Qiang Qiu, Pablo Mus\'e and Guillermo Sapiro
+Implementation of the article
+"OLÉ: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning"
+José Lezama, Qiang Qiu, Pablo Musé and Guillermo Sapiro
 
-Borrows heavily from https://github.com/https://github.com/aaron-xichen/pytorch-playground
+Borrows heavily from [Aaron Xichen PyTorch Playground] (https://github.com/https://github.com/aaron-xichen/pytorch-playground)
 
 
 - This package contains the Python source code for running the STL-10
