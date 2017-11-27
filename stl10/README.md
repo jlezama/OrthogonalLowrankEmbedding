@@ -1,11 +1,10 @@
-# Orthogonal Lowrank Embedding (OL\'E)
-Classification on STL-10 with OLE using PyTorch.
+# Orthogonal Lowrank Embedding (OLÉ) on STL-10 with Pytorch
 
 Implementaion of the article
 "OL\'E: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning"
 Jos\'e Lezama, Qiang Qiu, Pablo Mus\'e and Guillermo Sapiro
 
-Borrows heavily from [https://github.com/https://github.com/aaron-xichen/pytorch-playground]
+Borrows heavily from https://github.com/https://github.com/aaron-xichen/pytorch-playground
 
 
 - This package contains the Python source code for running the STL-10
@@ -13,7 +12,7 @@ Borrows heavily from [https://github.com/https://github.com/aaron-xichen/pytorch
 
 - Requires Pytorch, Torchvision, Numpy and Scipy packages, and a GPU. Scipy must be linked against openblas.
 
-BASIC INSTRUCTIONS: 
+### BASIC INSTRUCTIONS: 
 - To try the experiment on STL-10+ with OLE (Table 2) just run:
 ```
 python train.py
