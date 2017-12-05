@@ -1,0 +1,30 @@
+### START BATCHNORM LAYER _NAME_
+
+layer {
+  name: "_NAME_"
+  type: "BatchNorm"
+  bottom: "_BOTTOM_"
+  top: "_TOP_"
+  batch_norm_param {
+    use_global_stats: _USE_GLOBAL_STATS_
+  }
+
+_DEPLOY_COMMENT_  param {
+_DEPLOY_COMMENT_    lr_mult: _LR_MULT_
+_DEPLOY_COMMENT_  }
+_DEPLOY_COMMENT_  param {
+_DEPLOY_COMMENT_    lr_mult: _LR_MULT_
+_DEPLOY_COMMENT_  }
+_DEPLOY_COMMENT_  param {
+_DEPLOY_COMMENT_    lr_mult: _LR_MULT_
+_DEPLOY_COMMENT_  }
+_DEPLOY_COMMENT_
+_DEPLOY_COMMENT_ 
+_DEPLOY_COMMENT_  include {
+_DEPLOY_COMMENT_    phase: _PHASE_
+_DEPLOY_COMMENT_  }
+  
+}
+
+
+### END BATCHNORM LAYER _NAME_

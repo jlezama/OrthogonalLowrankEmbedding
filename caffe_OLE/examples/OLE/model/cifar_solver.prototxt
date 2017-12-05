@@ -1,0 +1,26 @@
+net: "_NET_NAME_"
+
+test_iter: 100
+test_interval: 1000
+
+base_lr: _LR_
+momentum: 0.9
+weight_decay: _WEIGHT_DECAY_
+
+
+lr_policy: "multistep"
+gamma: 0.1
+#stepvalue: 16000 # 18000
+stepvalue:  18000
+
+display: 200
+
+# The maximum number of iterations
+max_iter: _MAX_ITER_
+
+# snapshot intermediate results
+snapshot: _MAX_ITER_
+snapshot_prefix: "_SNAPSHOT_DIR_"
+
+# solver mode: CPU or GPU
+solver_mode: GPU

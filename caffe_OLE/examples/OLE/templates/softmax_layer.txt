@@ -1,0 +1,23 @@
+### START SOFTMAX LOSS LAYER _NAME_
+
+layer {
+  name: "_NAME_"
+  type: "SoftmaxWithLoss"
+  bottom: "_BOTTOM_"
+  bottom: "_LABEL_"
+  top: "_NAME_"
+  loss_weight: _LOSS_WEIGHT_
+}
+
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "_BOTTOM_"
+  bottom: "_LABEL_"
+  top: "accuracy"
+  include {
+    phase: TEST
+  }
+}
+
+### END SOFTMAX LOSS LAYER _NAME_

@@ -1,0 +1,40 @@
+layer {
+  name: "data"
+  type: "DummyData"
+  top: "data"
+  top: "label"
+  transform_param {
+    scale: 0.00392156862745
+  }
+  dummy_data_param {
+    shape {
+      dim: 150
+      dim: 3
+    }
+    shape {
+      dim: 150
+    }
+  }
+}
+layer {
+  name: "affine"
+  type: "InnerProduct"
+  bottom: "data"
+  top: "affine"
+  inner_product_param {
+    num_output: 3
+  }
+}
+layer {
+  name: "lowrank"
+  type: "Python"
+  bottom: "affine"
+  bottom: "label"
+  top: "lowrank"
+  python_param {
+    module: "OLE"
+    layer: "OLELossLayer"
+    param_str: '{"lambda_": 0.25}'
+  }
+  loss_weight: 1
+}

@@ -1,0 +1,28 @@
+### START CONVOLUTION LAYER _NAME_ ###
+
+layer {
+  name: "_NAME_"
+  type: "Convolution"
+  bottom: "_BOTTOM_"
+  top: "_TOP_"
+  # param {
+  #   lr_mult: _LR_MULT_1_
+  # }
+  # param {
+  #   lr_mult: _LR_MULT_2_
+  # }
+  convolution_param {
+    num_output: _NUM_OUTPUT_
+    kernel_size: _KERNEL_SIZE_
+    stride: _STRIDE_
+    pad: _PAD_
+weight_filler	{
+      _WEIGHT_FILLER_
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+### END CONVOLUTION LAYER _NAME_ ###
