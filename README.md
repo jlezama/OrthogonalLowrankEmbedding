@@ -8,7 +8,7 @@ This repository contains the source code for the experiments of the article
 # Experiments
 
 
-[STL-10-Pytorch](stl10)  Contains experiments using small training data on STL-10 database.
+[STL-10-Pytorch](stl10)  Contains experiments using small training data on STL-10 database. *(This is the simplest experiment to run, I recomend to start here)*
 
 [Cifar10-Caffe](caffe_OLE) Contains experiments on CIFAR10 using Caffe and a VGG-16 architecture
 
