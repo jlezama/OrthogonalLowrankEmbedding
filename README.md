@@ -12,7 +12,7 @@ This repository contains the source code for the experiments of the article
 
 [Cifar10-Caffe](caffe_OLE) Contains experiments on CIFAR10 using Caffe and a VGG-16 architecture
 
-[Facescrub500-Caffe] Contains experiments on face dataset Facescrub500 (dataset definition also included).
+[Facescrub500-Caffe](caffe_Facescrub500) Contains experiments on face dataset Facescrub500 (dataset definition also included).
 
 [Cifar10-Pytorch](pytorch_OLE) Contains experiments on CIFAR10 and CIFAR100 for various architectures.
 
