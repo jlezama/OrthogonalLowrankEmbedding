@@ -7,7 +7,7 @@ Implementation of the article
    José Lezama, Qiang Qiu, Pablo Musé and Guillermo Sapiro
 ```
 
-Borrows heavily from [Aaron Xichen PyTorch Playground] (https://github.com/https://github.com/aaron-xichen/pytorch-playground)
+Borrows heavily from [Aaron Xichen PyTorch Playground](https://github.com/https://github.com/aaron-xichen/pytorch-playground)
 
 
 - This package contains the Python source code for running the STL-10
