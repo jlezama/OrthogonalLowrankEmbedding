@@ -19,7 +19,7 @@ Borrows heavily from [https://github.com/bearpaw/pytorch-classification]
 ## Training Examples
 First cd into this folder:
 ```
-cd pytorch-classification
+cd pytorch_OLE
 ```
 
 
@@ -48,7 +48,7 @@ python eval.py --resume path_to/checkpoint.pth.tar
 Top1 error rate on the CIFAR-10/100 benchmarks are reported in the
 paper (Table 2).
 This code is used for VGG-11, VGG-19, ResNet-110, PreResNet-110 architectures.
-For STL-10,  VGG-16 VGG-Face and DenseNets see [here](.)
+For STL-10,  VGG-16 VGG-Face and DenseNets see [here](../)
 
 You may get different results when training your models with different
 random seed.
