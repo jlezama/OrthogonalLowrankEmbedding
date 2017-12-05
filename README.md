@@ -10,7 +10,7 @@ This repository contains the source code for the experiments of the article
 
 [STL-10-Pytorch](stl10)  Contains experiments using small training data on STL-10 database.
 
-[Cifar10-Caffe] Contains experiments on CIFAR10 using Caffe and a VGG-16 architecture
+[Cifar10-Caffe](caffe_OLE) Contains experiments on CIFAR10 using Caffe and a VGG-16 architecture
 
 [Facescrub500-Caffe] Contains experiments on face dataset Facescrub500 (dataset definition also included).
 
