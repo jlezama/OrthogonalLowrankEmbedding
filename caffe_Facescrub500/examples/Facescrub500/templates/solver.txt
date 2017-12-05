@@ -1,0 +1,15 @@
+net: "_NET_NAME_"
+test_iter: 10
+test_interval: 2000
+base_lr: _LR_
+lr_policy: "step"
+gamma: 0.9
+stepsize: 50000
+display: 500
+max_iter: _MAX_ITER_
+momentum: 0.9
+weight_decay: _WEIGHT_DECAY_
+snapshot: _MAX_ITER_
+snapshot_prefix: "_SNAPSHOT_DIR_"
+solver_mode: _SOLVER_MODE_
+type: "_OPTIMIZER_"

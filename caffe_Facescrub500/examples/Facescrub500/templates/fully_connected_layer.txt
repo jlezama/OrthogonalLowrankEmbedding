@@ -1,0 +1,16 @@
+### START FULLY CONNECTED LAYER _NAME_
+
+layer {
+  name: "_NAME_"
+  type: "InnerProduct"
+  bottom: "_BOTTOM_"
+  top: "_TOP_"
+  inner_product_param {
+    num_output: _NUM_OUTPUT_
+    weight_filler {
+      _WEIGHT_FILLER_
+    }
+  }
+}
+
+### END FULLY CONNECTED LAYER _NAME_

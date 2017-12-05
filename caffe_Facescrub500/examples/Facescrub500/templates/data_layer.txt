@@ -1,0 +1,35 @@
+### START DATA LAYER _NAME_
+
+layer {
+  name: "_NAME_"
+  type: "Data"
+  top: "_TOP_"
+    top: "_LABEL_"
+  include {
+    phase: TRAIN
+  }
+  data_param {
+    # path to the DB
+    source: "_SOURCE_TRAIN_"
+    backend: LMDB
+    batch_size: _BATCH_SIZE_TRAIN_
+  }
+}
+
+
+layer {
+  name: "_NAME_"
+  type: "Data"
+  top: "_TOP_"
+  top: "_LABEL_"
+  include {
+    phase: TEST
+  }
+  data_param {
+    source: "_SOURCE_TEST_"
+    backend: LMDB
+    batch_size: _BATCH_SIZE_TEST_
+  }
+}
+
+### END DATA LAYER _NAME_

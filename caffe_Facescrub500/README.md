@@ -1,4 +1,4 @@
-# Orthogonal Lowrank Embedding
+# Orthogonal Lowrank Embeddrunning the Facescrub 500 experiment in
 This is the Caffe code for
 
 ```
@@ -6,22 +6,27 @@ This is the Caffe code for
     José Lezama, Qiang Qiu, Pablo Musé and Guillermo Sapiro
 ```
 
-This code is based on [Large Margin Softmax Loss](https://github.com/wy1iu/LargeMargin_Softmax_Loss) by Weiyang Liu, Yandong Wen, Zhiding Yu and Meng Yang
-
 ### Files
 - Caffe library
 - OLE Loss
   * python/OLE.py
-- CIFAR10  example
+- Facescrub500  example
   * examples/OLE/cifar.py
-- toy example
-  * examples/test/test.py
+
+### Facescrub 500 dataset
+Download the Facescrub 500 dataset [here](https://iie.fing.edu.uy/~jlezama/datasets/Facescrub500/)
 
 ### Usage
-- Compile this Caffe version with pycaffe
+- Compile this Caffe version with pycaffe enabled
+- Download VGG_FACE.caffemodel from [VGG website](http://www.robots.ox.ac.uk/~vgg/software/vgg_face/) into examples/Facescrub500/models/
+- Get Facescrub 500 dataset from [here](https://iie.fing.edu.uy/~jlezama/datasets/Facescrub500/)
+- Create lmdb files using Caffe tool. Example
+```build/tools/convert_imageset --shuffle / Facescrub500_train.txt Facescrub500_train_shuffle.lmdb```
+- Save lmdb into ```data/``` folder
 - Set PYTHONPATH environment variable to the Caffe python folder (where OLE.py is)
-- CD into ```examples/OLE``` and run ```python cifar.py``` for CIFAR10
+- CD into examples/Facescrub500/ and run ```pyhton facescrub500.py```
 - The prototxt of OLE loss layer is as follows:
+
 ```
 layer {
   name: "OLE"

@@ -1,0 +1,15 @@
+### START SCALE LAYER _NAME_
+
+layer {
+    name: "_NAME_"
+    bottom: "_BOTTOM_"
+    top: "_TOP_"
+    type: "Power"
+    power_param {
+      power: _POWER_
+      scale: _SCALE_
+      shift: _SHIFT_
+    }
+  }
+  
+### END SCALE LAYER _NAME_

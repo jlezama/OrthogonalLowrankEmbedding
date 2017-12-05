@@ -1,0 +1,10 @@
+### START RELU LAYER _NAME_
+
+layer {
+  name: "_NAME_"
+  type: "ReLU"
+  bottom: "_BOTTOM_"
+  top: "_TOP_"
+}
+
+### END RELU LAYER _NAME_

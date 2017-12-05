@@ -1,0 +1,16 @@
+### START LOWRANK LOSS LAYER _NAME_
+
+layer {
+  name: "_NAME_"
+  type: "Python"
+  bottom: "_BOTTOM_"
+  bottom: "_LABEL_"
+  top: "lowrank"
+  python_param {
+    module: "LowRankLoss"
+    layer: "LowRankLossLayer"
+  }
+  loss_weight: _LOSS_WEIGHT_
+}
+
+### END LOWRANK LOSS LAYER _NAME_

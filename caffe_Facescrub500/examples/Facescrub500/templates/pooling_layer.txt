@@ -1,0 +1,15 @@
+### START POOLING LAYER _NAME_
+
+layer {
+  name: "_NAME_"
+  type: "Pooling"
+  bottom: "_BOTTOM_"
+  top: "_TOP_"
+  pooling_param {
+    pool: _POOL_TYPE_
+    kernel_size: _KERNEL_SIZE_
+    stride: _STRIDE_
+  }
+}
+
+### END POOLING LAYER _NAME_

@@ -1,0 +1,30 @@
+### START DATA LAYER _NAME_
+
+
+layer {
+  name: "_NAME_"
+  type: "HDF5Data"
+  top: "_TOP_"
+  top: "_LABEL_"
+  hdf5_data_param {
+    source: "_SOURCE_TRAIN_"
+    batch_size: _BATCH_SIZE_TRAIN_
+    shuffle: true	
+  }
+  include: { phase: TRAIN }
+}
+layer {
+  name: "_NAME_"
+  type: "HDF5Data"
+  top: "_TOP_"
+  top: "_LABEL_"
+  hdf5_data_param {
+    source: "_SOURCE_TEST_"
+    batch_size: _BATCH_SIZE_TEST_
+    shuffle: true
+  }
+  include: { phase: TEST }
+}
+
+
+### END DATA LAYER _NAME_

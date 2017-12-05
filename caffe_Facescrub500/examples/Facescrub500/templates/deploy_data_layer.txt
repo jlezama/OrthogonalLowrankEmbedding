@@ -1,0 +1,10 @@
+### START DEPLOY DATA LAYER _NAME_
+
+name: "_NAME_"
+input: "_INPUT_"
+input_dim: _INPUTDIM_1_
+input_dim: _INPUTDIM_2_
+input_dim: _INPUTDIM_3_
+input_dim: _INPUTDIM_4_
+
+### END DEPLOY DATA LAYER _NAME_
