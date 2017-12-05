@@ -1,5 +1,6 @@
-# Orthogonal Lowrank Embeddrunning the Facescrub 500 experiment in
-This is the Caffe code for
+# Orthogonal Lowrank Embedding
+
+This is the Caffe code for running the Facescrub 500 experiment in
 
 ```
     "OLÉ: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning" 
