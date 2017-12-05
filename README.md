@@ -12,9 +12,11 @@ This repository contains the source code for the experiments of the article
 
 [Cifar10-Caffe](caffe_OLE) Contains experiments on CIFAR10 using Caffe and a VGG-16 architecture
 
-[Facescrub500-Caffe](caffe_Facescrub500) Contains experiments on face dataset Facescrub500 (dataset definition also included).
+[Facescrub500-Caffe](caffe_Facescrub500) Contains experiments on face dataset Facescrub500 
 
 [Cifar10-Pytorch](pytorch_OLE) Contains experiments on CIFAR10 and CIFAR100 for various architectures.
 
 [DenseNets-Pytorch] Contains experiments using Densenets with OLÉ on CIFAR10 and MNIST
 
+# Facescrub 500 dataset
+Download dataset used in the paper [here](https://iie.fing.edu.uy/~jlezama/datasets/Facescrub500/)
