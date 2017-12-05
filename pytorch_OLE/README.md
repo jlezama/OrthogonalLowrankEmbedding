@@ -2,8 +2,8 @@
 Classification on CIFAR-10/100 with OLE using PyTorch.
 
 Implementaion of the article
-"OL\'E: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning"
-Jos\'e Lezama, Qiang Qiu, Pablo Mus\'e and Guillermo Sapiro
+"OLÉ: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning"
+José Lezama, Qiang Qiu, Pablo Mus\é and Guillermo Sapiro
 
 Borrows heavily from [https://github.com/bearpaw/pytorch-classification]
 
