@@ -35,7 +35,7 @@ python train.py --validation 1 --lambda_ 0.25
 ```
 - Resulting logs and model will be saved to the 'results' folder
 
-- The script eval.py can be used to extract deep features and save
+- The script ```eval.py``` can be used to extract deep features and save
   into .MAT file. The script visualize.m presents a visualization
   example (similar to Fig. 1).
 
