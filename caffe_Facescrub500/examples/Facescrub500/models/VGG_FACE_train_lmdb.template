@@ -526,5 +526,5 @@ _OLE_COMMENT_     module: "OLE"
 _OLE_COMMENT_     layer: "OLELossLayer"
 _OLE_COMMENT_   param_str: '{"lambda_": _LAMBDA_}'
 _OLE_COMMENT_   }
-_OLE_COMMENT_   loss_weight: 1.0
+_OLE_COMMENT_   loss_weight: 100.0
 _OLE_COMMENT_ }

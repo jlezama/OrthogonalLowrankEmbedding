@@ -60,7 +60,7 @@ parser.add_option('-d', '--dataset', action='store', dest='dataset', help='datas
 parser.add_option('-p', '--print_to_file', action='store', dest='print_to_file', help='1 to save log to file, 0 to print to stdout', default=1, type=int)
 parser.add_option('-m', '--model', action='store', dest='model', help='network model to be used (custom*, allcnn)', default="custom", type=str)
 parser.add_option('-w', '--weights', action='store', dest='weights', help='pretrained weights', default=None, type=str)
-parser.add_option('-l', '--lambda_', action='store', dest='lambda_', help='\lambda, weight of OLE loss (default 250)', default=250., type=float)
+parser.add_option('-l', '--lambda_', action='store', dest='lambda_', help='\lambda, weight of OLE loss (default 2.5) (is multiplied by 100 inside prototxt)', default=2.5., type=float)
 
 
 options, args = parser.parse_args()
