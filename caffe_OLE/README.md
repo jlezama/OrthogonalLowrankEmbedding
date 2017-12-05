@@ -15,17 +15,19 @@ This code is based on [Large Margin Softmax Loss](https://github.com/wy1iu/Large
 - CIFAR10  example
   * examples/OLE/cifar.py
 - toy example
-  * examples/test
+  * examples/test/test.py
 
 ### Usage
+- Compile this Caffe version with pycaffe
+- run examples/OLE/cifar.py for CIFAR10
 - The prototxt of OLE loss layer is as follows:
 ```
 layer {
-  name: "lowrank"
+  name: "OLE"
   type: "Python"
   bottom: "deep_feature"
   bottom: "label"
-  top: "lowrank"
+  top: "OLE"
   python_param {
     module: "OLE"
     layer: "OLELossLayer"
