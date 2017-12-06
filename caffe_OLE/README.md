@@ -4,8 +4,9 @@ This is the Caffe code for
 ```
     "OLÉ: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning" 
     José Lezama, Qiang Qiu, Pablo Musé and Guillermo Sapiro
-[https://arxiv.org/abs/1712.01727](https://arxiv.org/abs/1712.01727)
 ```
+
+[https://arxiv.org/abs/1712.01727](https://arxiv.org/abs/1712.01727)
 
 
 This code is based on [Large Margin Softmax Loss](https://github.com/wy1iu/LargeMargin_Softmax_Loss) by Weiyang Liu, Yandong Wen, Zhiding Yu and Meng Yang
