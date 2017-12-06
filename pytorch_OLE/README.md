@@ -8,6 +8,7 @@ Implementaion of the article
 José Lezama, Qiang Qiu, Pablo Mus\é and Guillermo Sapiro
 ```
 
+[https://arxiv.org/abs/1712.01727](https://arxiv.org/abs/1712.01727)
 
 Borrows heavily from [https://github.com/bearpaw/pytorch-classification]
 
