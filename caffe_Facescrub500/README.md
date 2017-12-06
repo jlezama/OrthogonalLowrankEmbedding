@@ -4,7 +4,8 @@ This is the Caffe code for running the Facescrub 500 experiment in
 
 ```
     "OLÉ: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning" 
-    José Lezama, Qiang Qiu, Pablo Musé and Guillermo Sapiro
+   José Lezama, Qiang Qiu, Pablo Musé and Guillermo Sapiro
+   [https://arxiv.org/abs/1712.01727](https://arxiv.org/abs/1712.01727)
 ```
 
 ### Files
