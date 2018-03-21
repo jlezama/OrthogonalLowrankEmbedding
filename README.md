@@ -3,9 +3,18 @@
 This repository contains the source code for the experiments of the article
 
     "OLÉ: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning" 
-    José Lezama, Qiang Qiu, Pablo Musé and Guillermo Sapiro
+    José Lezama, Qiang Qiu, Pablo Musé and Guillermo Sapiro, CVPR 2018
 
 [https://arxiv.org/abs/1712.01727](https://arxiv.org/abs/1712.01727)
+
+If you find this work useful in your research, please consider citing:
+   "@inproceedings{Tai-DRRN-2017,
+  title={OL\'E: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning},
+  author={Lezama, Jos\'e and Qiu, Qiang and Mus\'e, Pablo and Sapiro, Guillermo},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  year={2018}
+}
+
 # Experiments
 
 
