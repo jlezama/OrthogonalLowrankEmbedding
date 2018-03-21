@@ -9,7 +9,7 @@ This repository contains the source code for the experiments of the article
 
 If you find this work useful in your research, please consider citing:
 
-    @inproceedings{Tai-DRRN-2017,
+    @inproceedings{Lezama2018OLE,
     title={OL\'E: Orthogonal Low-rank Embedding, A Plug and Play Geometric Loss for Deep Learning},
     author={Lezama, Jos\'e and Qiu, Qiang and Mus\'e, Pablo and Sapiro, Guillermo},
     booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
