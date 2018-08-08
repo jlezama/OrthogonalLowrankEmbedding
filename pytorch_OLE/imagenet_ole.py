@@ -235,7 +235,7 @@ def main():
 
 
     if use_OLE:    
-        criterion = [nn.CrossEntropyLoss()] + [OLELoss(lambda_=args.lambda_)]
+        criterion = [nn.CrossEntropyLoss()] + [OLELoss(n_classes=10, lambda_=args.lambda_)]
     else:
         criterion = [nn.CrossEntropyLoss()] 
 
@@ -334,7 +334,6 @@ def train(train_loader, model, criterion, optimizer, epoch, use_cuda):
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda(async=True)
-        inputs, targets = torch.autograd.Variable(inputs), torch.autograd.Variable(targets)
 
         # compute output
         outputs = model(inputs)
@@ -349,11 +348,11 @@ def train(train_loader, model, criterion, optimizer, epoch, use_cuda):
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(outputs[0].data, targets.data, topk=(1, 5))
-        losses.update(loss.data[0], inputs.size(0))
-        top1.update(prec1[0], inputs.size(0))
-        top5.update(prec5[0], inputs.size(0))
+        losses.update(loss.item(), inputs.size(0))
+        top1.update(prec1.item(), inputs.size(0))
+        top5.update(prec5.item(), inputs.size(0))
         if use_OLE:
-            ole.update(losses_list[1].data[0], inputs.size(0))
+            ole.update(losses_list[1].item(), inputs.size(0))
         else:
             ole.update(-1, 1)
 
@@ -404,37 +403,37 @@ def test(val_loader, model, criterion, epoch, use_cuda):
     
     end = time.time()
     bar = Bar('Processing', max=len(val_loader))
-    for batch_idx, (inputs, targets) in enumerate(val_loader):
-        # measure data loading time
-        data_time.update(time.time() - end)
+    with torch.no_grad():
+        for batch_idx, (inputs, targets) in enumerate(val_loader):
+            # measure data loading time
+            data_time.update(time.time() - end)
 
-        if use_cuda:
-            inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = torch.autograd.Variable(inputs, volatile=True), torch.autograd.Variable(targets)
+            if use_cuda:
+                inputs, targets = inputs.cuda(), targets.cuda()
 
-        # compute output
-        outputs = model(inputs)
-        # criterion is a list composed of crossentropy loss and OLE loss.
-        losses_list = [-1,-1]
-        # output_Var contains scores in the first element and features in the second element
-        loss = 0
-        for cix, crit in enumerate(criterion):
-            losses_list [cix] = crit(outputs[cix], targets)
-            loss += losses_list[cix]
+            # compute output
+            outputs = model(inputs)
+            # criterion is a list composed of crossentropy loss and OLE loss.
+            losses_list = [-1,-1]
+            # output_Var contains scores in the first element and features in the second element
+            loss = 0
+            for cix, crit in enumerate(criterion):
+                losses_list [cix] = crit(outputs[cix], targets)
+                loss += losses_list[cix]
 
 
-        # measure accuracy and record loss
-        prec1, prec5 = accuracy(outputs[0].data, targets.data, topk=(1, 5))
-        losses.update(loss.data[0], inputs.size(0))
-        top1.update(prec1[0], inputs.size(0))
-        top5.update(prec5[0], inputs.size(0))
+            # measure accuracy and record loss
+            prec1, prec5 = accuracy(outputs[0].data, targets.data, topk=(1, 5))
+            losses.update(loss.item(), inputs.size(0))
+            top1.update(prec1.item(), inputs.size(0))
+            top5.update(prec5.item(), inputs.size(0))
 
-        # measure elapsed time
-        batch_time.update(time.time() - end)
-        end = time.time()
+            # measure elapsed time
+            batch_time.update(time.time() - end)
+            end = time.time()
 
-        # plot progress
-        bar.suffix  = '[{epoch: d}] ({batch}/{size}) Data: {data:.3f}s | Batch: {bt:.3f}s | Total: {total:} | ETA: {eta:} | Loss: {loss:.4f} | top1: {top1: .4f} | top5: {top5: .4f} | OLE: {ole: .4f} (lambda_ = {lambda_: .2f})'.format(
+            # plot progress
+            bar.suffix  = '[{epoch: d}] ({batch}/{size}) Data: {data:.3f}s | Batch: {bt:.3f}s | Total: {total:} | ETA: {eta:} | Loss: {loss:.4f} | top1: {top1: .4f} | top5: {top5: .4f} | OLE: {ole: .4f} (lambda_ = {lambda_: .2f})'.format(
                     epoch=epoch,
                     batch=batch_idx + 1,
                     size=len(val_loader),
@@ -448,7 +447,7 @@ def test(val_loader, model, criterion, epoch, use_cuda):
                     ole=ole.avg,
                     lambda_ = lambda_,
                     )
-        bar.next()
+            bar.next()
     bar.finish()
     return (losses.avg, top1.avg)
 
