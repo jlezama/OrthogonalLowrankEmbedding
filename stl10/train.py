@@ -98,7 +98,7 @@ print('decreasing_lr: ' + str(decreasing_lr))
 best_acc, old_file = 0, None
 t_begin = time.time()
 crit0 = nn.CrossEntropyLoss()
-crit1 = OLELoss(lambda_=args.lambda_)
+crit1 = OLELoss(n_classes=10, lambda_=args.lambda_)
 
 
 
@@ -112,7 +112,6 @@ for epoch in range(args.epochs):
 
         if args.cuda:
             data, target = data.cuda(), target.cuda()
-        data, target = Variable(data), Variable(target)
 
         optimizer.zero_grad()
 
@@ -133,7 +132,7 @@ for epoch in range(args.epochs):
             acc = correct * 1.0 / len(data)
             print('Train Epoch: {} [{}/{}] Loss: {:.6f} OLE Loss: {:.6f} Acc: {:.4f} lr: {:.2e}'.format(
                 epoch, batch_idx * len(data), Ntrain,
-                loss.data[0], OLE_loss.data[0], acc, optimizer.param_groups[0]['lr']))
+                loss.item(), OLE_loss.item(), acc, optimizer.param_groups[0]['lr']))
 
     elapse_time = time.time() - t_begin
     speed_epoch = elapse_time / (epoch + 1)
@@ -147,25 +146,26 @@ for epoch in range(args.epochs):
         model.eval()
         test_loss = 0
         correct = 0
-        for data, target in test_loader:
-            indx_target = target.clone()
-            if args.cuda:
-                data, target = data.cuda(), target.cuda().long().squeeze()
-            data, target = Variable(data, volatile=True), Variable(target)
-            output = model(data)
+        with torch.no_grad():
+            for data, target in test_loader:
+                indx_target = target.clone()
+                if args.cuda:
+                    data, target = data.cuda(), target.cuda().long().squeeze()
 
-            test_loss += crit0(output[0], target)
-            test_OLE_loss =  crit1(output[1], target)
+                output = model(data)
+
+                test_loss += crit0(output[0], target)
+                test_OLE_loss =  crit1(output[1], target)
             
-            if args.lambda_ >0:
-                 test_loss += test_OLE_loss
+                if args.lambda_ >0:
+                    test_loss += test_OLE_loss
 
-            # test_loss += F.cross_entropy(output, target).data[0] 
-            pred = output[0].data.max(1)[1]  # get the index of the max log-probability
-            correct += pred.cpu().eq(indx_target).sum()
+                # test_loss += F.cross_entropy(output, target).data[0] 
+                pred = output[0].data.max(1)[1]  # get the index of the max log-probability
+                correct += pred.cpu().eq(indx_target).sum()
 
-        test_loss = test_loss.data[0] / len(test_loader) # average over number of mini-batch
-        test_OLE_loss = test_OLE_loss.data[0] # already averaged over minibatch
+        test_loss = test_loss.item() / len(test_loader) # average over number of mini-batch
+        test_OLE_loss = test_OLE_loss.item() # already averaged over minibatch
 
         test_acc = 100. * correct / float(Ntest)
 

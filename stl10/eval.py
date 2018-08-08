@@ -86,7 +86,7 @@ if args.cuda:
 best_acc, old_file = 0, None
 t_begin = time.time()
 crit0 = nn.CrossEntropyLoss()
-crit1 = OLELoss(lambda_=args.lambda_)
+crit1 = OLELoss(n_classes=10, lambda_=args.lambda_)
 #try:
 if 1:
     # ready to go
@@ -98,36 +98,37 @@ if 1:
     features = None
     labels = None
 
-    for data, target in test_loader:
-        indx_target = target.clone()
-        if args.cuda:
-            data, target = data.cuda(), target.cuda().long().squeeze()
-        data, target = Variable(data, volatile=True), Variable(target)
-        output = model(data)
+    with torch.no_grad():
+        for data, target in test_loader:
+            indx_target = target.clone()
+            if args.cuda:
+                data, target = data.cuda(), target.cuda().long().squeeze()
+
+            output = model(data)
         
 
-        test_loss += crit1(output[1], target)
+            test_loss += crit1(output[1], target)
 
 
-        pred = output[0].data.max(1)[1]  # get the index of the max log-probability
-        correct += pred.cpu().eq(indx_target).sum()
+            pred = output[0].data.max(1)[1]  # get the index of the max log-probability
+            correct += pred.cpu().eq(indx_target).sum()
 
-        # save features
-        featuresi = output[1].data.cpu().numpy()
-        labelsi = target.data.cpu().numpy()
+            # save features
+            featuresi = output[1].data.cpu().numpy()
+            labelsi = target.data.cpu().numpy()
         
-        if features is None:
-            features = featuresi
-            labels = labelsi
-        else:
-            features = np.concatenate((features, featuresi), 0)
-            labels = np.concatenate((labels, labelsi), 0)
+            if features is None:
+                features = featuresi
+                labels = labelsi
+            else:
+                features = np.concatenate((features, featuresi), 0)
+                labels = np.concatenate((labels, labelsi), 0)
     
     features_test = features
     labels_test = labels
 
     print((features_test.shape, labels_test.shape))
-    test_loss = test_loss.data[0] / len(test_loader) # average over number of mini-batch
+    test_loss = test_loss.item() / len(test_loader) # average over number of mini-batch
     acc = 100. * correct / len(test_loader.dataset)
 
     print('\tTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.4f}%)'.format(

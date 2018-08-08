@@ -1,86 +1,69 @@
+""" 
+OLE loss  
+
+Copyright (c)  Jose Lezama, 2017 
+jlezama@fing.edu.uy
+"""
+
 import torch
-from torch.autograd import Variable, Function
+from torch.autograd import Function
 
-import numpy as np
-import scipy as sp
-import scipy.linalg as linalg
 
-# Inherit from Function
 class OLELoss(Function):
-    def __init__(self, lambda_=0.25):
+    def __init__(self, n_classes, lambda_=0.25):
+        super(OLELoss, self).__init__()
+        self.n_classes = n_classes
         self.lambda_ = lambda_
+        self.dx = None
 
     def forward(self, X, y):
-        X = X.cpu().numpy()
-        y = y.cpu().numpy()
-
-        classes = np.unique(y)
-        C = classes.size
-        
-        N, D = X.shape
+        n, d = X.shape
 
         lambda_ = 1.
-        DELTA = 1.
-        
+        delta = 1.
 
         # gradients initialization
-        Obj_c = 0
-        dX_c = np.zeros((N, D))
-        Obj_all = 0;
-        dX_all = np.zeros((N,D))
+        obj_c = torch.zeros(1).sum()
+        dx_c = torch.zeros(n, d)
+        if X.is_cuda:
+            obj_c, dx_c = obj_c.cuda(), dx_c.cuda()
 
-        eigThd = 1e-6 # threshold small eigenvalues for a better subgradient
-
+        eig_thd = 1e-6  # threshold small eigenvalues for a better subgradient
 
         # compute objective and gradient for first term \sum ||TX_c||*
-        for c in classes:
-            A = X[y==c,:]
+        for c in range(self.n_classes):
+            a = X[y == c, :]
+            if a.size(0) == 0:
+                continue
 
-            # SVD
-            U, S, V = sp.linalg.svd(A, full_matrices = False, lapack_driver='gesvd')
-                
-            V = V.T
-            nuclear = np.sum(S);
+            u, s, v = a.svd()
+            nuclear = s.sum()
 
-            ## L_c = max(DELTA, ||TY_c||_*)-DELTA
-            
-            if nuclear>DELTA:
-              Obj_c += nuclear;
-            
-              # discard small singular values
-              r = np.sum(S<eigThd)
-              uprod = U[:,0:U.shape[1]-r].dot(V[:,0:V.shape[1]-r].T)
-            
-              dX_c[y==c,:] += uprod
+            if nuclear > delta:
+                obj_c += nuclear
+
+                # discard small singular values
+                r = torch.sum(s < eig_thd)
+                uprod = u[:, 0:u.shape[1] - r].matmul(v[:, 0:v.shape[1] - r].t())
+
+                dx_c[y == c, :] += uprod
             else:
-              Obj_c+= DELTA
-            
+                obj_c += delta
+
         # compute objective and gradient for secon term ||TX||*
-                                 
-        U, S, V = sp.linalg.svd(X, full_matrices = False, lapack_driver='gesvd')  # all classes
+        u, s, v = X.svd()  # all classes
+        obj_all = s.sum()
 
-        V = V.T
+        r = torch.sum(s < eig_thd)
+        uprod = u[:, 0:u.shape[1] - r].matmul(v[:, 0:v.shape[1] - r].t())
 
-        Obj_all = np.sum(S);
+        dx_all = uprod
 
-        r = np.sum(S<eigThd)
+        obj = (obj_c - lambda_ * obj_all) / n * self.lambda_
+        self.dx = (dx_c - lambda_ * dx_all) / n * self.lambda_
 
+        return obj
 
-
-        uprod = U[:,0:U.shape[1]-r].dot(V[:,0:V.shape[1]-r].T)
-
-        dX_all = uprod
-
-        
-        obj = (Obj_c  - lambda_*Obj_all)/N*np.float(self.lambda_)
-
-
-        dX = (dX_c  - lambda_*dX_all)/N*np.float(self.lambda_) 
-
-        self.dX = torch.FloatTensor(dX)
-        return torch.FloatTensor([float(obj)]).cuda()
-        
     def backward(self, grad_output):
-        # print self.dX
-        return self.dX.cuda(), None
+        return self.dx, None
 
